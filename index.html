@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Kigezi - RoBen Adventures | September 2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --roben-green: #097B3F;      /* Main green */
+            --roben-light-green: #3AA855;/* Lighter green */
+            --roben-orange: #F9A825;     /* Softened gold */
+            --warm-cream: #FFF8E1;
+            --deep-teal: #055e40;        /* Darker shade */
+            --primary-gold: #F9A825;     /* Softened gold */
+            --blue-accent: #235789;      /* Blue accent */
+            --price-green: #097B3F;      /* Fee color */
+            --shadow-soft: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--deep-teal);
+            color: var(--warm-cream);
+            overflow-y: auto; /* Allow scrolling */
+            height: 100vh;
+        }
+
+        .hero-container {
+            position: relative;
+            padding-top: 3rem; /* Reduced padding to push content higher */
+            padding-bottom: 8rem; /* Space for sponsors */
+            min-height: 100vh;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(9, 123, 63, 0.55), rgba(5, 94, 64, 0.65)); /* Return to green overlay */
+            z-index: 0;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 2;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            transform: translateZ(20px); /* 3D effect */
+            transition: all 0.3s ease;
+        }
+
+        /* Updated logo positioning */
+        .desktop-logo {
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo {
+            max-height: 70px;
+            display: block;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Adjust desktop hero text to accommodate logo position */
+        .desktop-hero-text {
+            margin-top: 7rem;
+        }
+
+        /* Mobile header logo remains the same */
+        @media (max-width: 768px) {
+            .mobile-header .logo-container {
+                position: relative;
+                margin-right: 1rem;
+                margin-left: 0;
+                padding: 0;
+                display: flex;
+                align-items: center; /* This centers the logo vertically */
+            }
+            
+            .mobile-header {
+                display: flex;
+                align-items: center; /* This ensures all elements are vertically centered */
+            }
+            
+            .mobile-header .hero-text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Center the text vertically */
+            }
+            
+            .mobile-header .hero-title {
+                margin-top: 0;
+                margin-bottom: 0; /* Remove default margins */
+            }
+            
+            /* Adjust logo size to match text height better */
+            .mobile-header .logo {
+                max-height: 42px;
+            }
+        }
+
+        /* For very small mobile screens */
+        @media (max-width: 360px) {
+            .mobile-header {
+                padding: 0.8rem;
+                margin: 0.8rem 0.8rem 1.2rem;
+            }
+            
+            .mobile-header .logo {
+                max-height: 40px;
+            }
+            
+            .mobile-header .hero-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* .pickup-badge,  */
+        .urgency-badge {
+            position: static; /* Remove absolute positioning */
+            margin-bottom: 0.8rem;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;}
+
+        .pickup-badge {
+            background: linear-gradient(135deg, var(--roben-orange) 0%, #ffc876 90%);
+            color: #212121;
+            font-weight: 550;
+            padding: 0.7rem 1rem; /* Less padding */
+            margin-top: 0.5rem; /* Less margin */
+            border: none;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            opacity: 0.7;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .pickup-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge-container {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            width: 100%;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem; /* Reduced from 1.5rem */
+            max-width: 95vw; /* Wider grid to use more screen space */
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 0.5rem; /* Reduced side padding */
+            z-index: 1;
+            align-self: flex-start;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem; /* Reduced from 1.2rem */
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .info-card {
+            background-color: rgba(9, 123, 63, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.8rem; /* Reduced from 1.2rem/1.5rem */
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 1 / 1; /* Square aspect ratio */
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-card:hover {
+            background-color: rgba(9, 123, 63, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-gold);
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+            color: var(--primary-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .card-content {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-text {
+            z-index: 10;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Fixed hero title styling with better fonts and effects */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.7rem;
+            line-height: 1.1;
+            position: relative;
+            
+            /* Enhanced gradient */
+            background: linear-gradient(135deg, #FFFFFF 10%, var(--primary-gold) 60%, #F9A825 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            
+            /* Better glow effect */
+            filter: drop-shadow(0 0 5px rgba(249, 168, 37, 0.5)) 
+                   drop-shadow(0 0 12px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Glowing animation for title */
+        @keyframes glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 5px rgba(249, 168, 37, 0.5)) 
+                       drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+            }
+            50% { 
+                filter: drop-shadow(0 0 8px rgba(249, 168, 37, 0.7)) 
+                       drop-shadow(0 0 15px rgba(0, 0, 0, 0.3));
+            }
+        }
+
+        .glowing-title {
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .sub-title {
+            font-size: 1.2rem;
+            color: var(--warm-cream);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            opacity: 0.95;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .activities-panel {
+            background-color: rgba(5, 94, 64, 0.4);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: auto; /* Auto height */
+            max-height: fit-content; /* Fit content */
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            aspect-ratio: auto;
+            min-height: 360px; /* Reduced height */
+        }
+
+        .activities-title {
+            margin-top: 1.5rem;
+            font-size: 1.3rem; /* Smaller title */
+            margin-bottom: 0.6rem; /* Less margin */
+            color: var(--primary-gold);
+            text-align: center;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .activities-subtitle {
+            color: var(--warm-cream);
+            font-size: 0.8rem; /* Smaller subtitle */
+            margin-top: 0.3rem; /* Less margin */
+            opacity: 0.9;
+        }
+
+        .activity-list {
+            list-style: none;
+            margin-bottom: 0.6rem; /* Less bottom margin */
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem; /* Smaller gap between activities */
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem; /* Slightly smaller font */
+            opacity: 0.9;
+            transition: all 0.2s ease;
+            padding: 0.3rem; /* Smaller padding */
+            border-radius: 4px;
+        }
+
+        .activity-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            opacity: 1;
+        }
+
+        .activity-item i {
+            color: var(--primary-gold);
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+        }
+
+        .price-highlight {
+            background: linear-gradient(to right, rgba(9, 123, 63, 0.4), rgba(9, 123, 63, 0.2));
+            /* border-radius: 8px; */
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            aspect-ratio: 1 / 1; /* Square aspect ratio */
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .price-value {
+            font-size: 2.3rem;
+            font-weight: 700;
+            border-radius: 18px;
+            color: var(--primary-gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .free-tshirt {
+            font-weight: 700; 
+            color: var(--primary-gold); 
+            margin-top: 10px;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem; /* Reduced gap */
+            margin-top: 0.6rem; /* Less margin */
+        }
+
+        .contact-card {
+            background-color: rgba(9, 123, 63, 0.2);
+            border-radius: 8px;
+            padding: 0.8rem; /* Less padding */
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            aspect-ratio: 1 / 1; /* Square aspect ratio */
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card:hover {
+            background-color: rgba(9, 123, 63, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .contact-icon {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary-gold);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--roben-orange) 0%, #FFB74D 100%);
+            color: #212121;
+            font-weight: 700;
+            padding: 0.7rem 1rem; /* Less padding */
+            margin-top: 0.5rem; /* Less margin */
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .urgency-badge {
+            position: absolute;
+            top: 5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, var(--roben-orange) 0%, #FFB74D 100%);
+            color: #212121;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .sponsors-section {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 0.7rem 0;
+            text-align: center;
+            z-index: 2;
+            backdrop-filter: blur(5px);
+        }
+
+        .sponsors-title {
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+
+        .sponsors-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .sponsor-logo {
+            height: 35px;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        }
+
+        .sponsor-logo:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .date-container {
+            background-color: rgba(9, 123, 63, 0.25);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            text-align: center;
+            border-radius: 12px;
+            aspect-ratio: 1 / 1; /* Square aspect ratio */
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .date-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .date-value {
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin: 0.3rem 0;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes breathing {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .glow-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+        }
+
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-effect {
+            transition: all 0.3s ease;
+        }
+
+        .card-effect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Mobile responsiveness improvements */
+        @media (max-width: 992px) {
+            .hero-container {
+                padding-top: 2rem;
+                padding-bottom: 6rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+            
+            .activity-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sponsors-section {
+                position: relative;
+                margin-top: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+            }
+            
+            .hero-container {
+                height: auto;
+                padding-bottom: 1rem;
+            }
+            
+            .video-background, .video-overlay {
+                position: fixed;
+            }
+            
+            /* Mobile layout for logo and hero text */
+            .mobile-header {
+                background-color: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                padding: 1.2rem;
+                margin: 1rem;
+                display: flex;
+                align-items: center;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .mobile-header .hero-text {
+                flex: 1;
+            }
+            
+            .mobile-header .hero-title {
+                font-size: 1.8rem;
+                text-align: left;
+            }
+            
+            .mobile-header .sub-title {
+                font-size: 0.9rem;
+                text-align: left;
+            }
+            
+            .logo-container {
+                position: static;
+                margin: 0;
+                filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            }
+            
+            .logo {
+                max-height: 50px;
+            }
+            
+            .hero-text {
+                text-align: left;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            
+            .sub-title {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .hero-subtitle {
+                display: none;
+            }
+            
+            .content-grid {
+                margin-top: 1rem;
+            }
+            
+            .activity-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .sponsors-section {
+                position: relative;
+                bottom: auto;
+                margin-top: 2rem;
+            }
+            
+            .sponsors-logos {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .sponsor-logo {
+                height: 25px;
+            }
+            
+            /* Make cards square in mobile view */
+            .info-card, .date-container, .price-highlight, .contact-card {
+                aspect-ratio: auto;
+                width: 100%;
+                min-height: auto;
+            }
+            
+            /* Fix the video overlay color in mobile view as well */
+            .video-background, .video-overlay {
+                position: fixed;
+            }
+            
+            .video-overlay {
+                background: linear-gradient(rgba(9, 123, 62, 0.433), rgba(5, 94, 64, 0.411));
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-header {
+                display: none;
+            }
+            
+            .desktop-hero-text {
+                display: block;
+            }
+        }
+
+        /* Fix for duplicate hero text in mobile view */
+        @media (max-width: 768px) {
+            .desktop-hero-text {
+                display: none; /* Hide desktop hero text on mobile */
+            }
+            
+            .desktop-logo {
+                display: none; /* Hide desktop logo on mobile */
+            }
+            
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+                margin-top: 1rem;
+                margin-bottom: 1.5rem;
+                z-index: 10;
+            }
+            
+            .mobile-header .logo-container {
+                margin-right: 1rem;
+            }
+            
+            .mobile-header .hero-text {
+                margin: 0;
+                text-align: left;
+            }
+        }
+
+        /* Enhanced title styling */
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.7rem;
+            line-height: 1.1;
+            position: relative;
+            
+            /* Enhanced gradient */
+            background: linear-gradient(135deg, #FFFFFF 10%, var(--primary-gold) 60%, #F9A825 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            
+            /* Better glow effect */
+            filter: drop-shadow(0 0 5px rgba(249, 168, 37, 0.5)) 
+                   drop-shadow(0 0 12px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Glowing animation for title */
+        @keyframes glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 5px rgba(249, 168, 37, 0.5)) 
+                       drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+            }
+            50% { 
+                filter: drop-shadow(0 0 8px rgba(249, 168, 37, 0.7)) 
+                       drop-shadow(0 0 15px rgba(0, 0, 0, 0.3));
+            }
+        }
+
+        .glowing-title {
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        /* Update video overlay to whitish color */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(9, 123, 63, 0.55), rgba(5, 94, 64, 0.65)); /* Return to green overlay */
+            z-index: 0;
+        }
+
+        /* Make cards more square-like */
+        .info-card, .date-container, .price-highlight, .contact-card, .activities-panel {
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            padding: 0.8rem; /* Reduced from 1.2rem/1.5rem */
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: auto; /* Remove fixed aspect ratio */
+            height: auto;
+        }
+
+        /* Fix for activities panel to maintain content visibility */
+        .activities-panel {
+            height: auto;
+            max-height: fit-content;
+            background-color: rgba(5, 94, 64, 0.4);
+        }
+
+        /* Style for the Places to Visit list */
+        .places-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .place-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.7rem;
+            padding: 0.4rem;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .place-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .place-check {
+            color: var(--primary-gold);
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .place-name {
+            font-size: 0.95rem;
+        }
+
+        /* Activities title styling */
+        .activities-header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 0rem;
+        }
+
+        .activities-subtitle {
+            color: var(--warm-cream);
+            font-size: 0.8rem; /* Smaller subtitle */
+            margin-top: 0.3rem; /* Less margin */
+            margin-bottom: 0.2rem;
+            padding: 0.1rem;
+            opacity: 0.9;
+        }
+
+        /* Card content centering */
+        .card-icon {
+            margin-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .card-title {
+            text-align: center;
+            margin-bottom: 0.8rem;
+            color: var(--primary-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-content {
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Mobile header improvements */
+        @media (max-width: 768px) {
+            .mobile-header {
+                background-color: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                padding: 1.2rem;
+                margin: 1rem;
+                display: flex;
+                align-items: center;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .mobile-header .hero-text {
+                flex: 1;
+            }
+            
+            .mobile-header .hero-title {
+                font-size: 1.8rem;
+                text-align: left;
+            }
+            
+            .mobile-header .sub-title {
+                font-size: 0.9rem;
+                text-align: left;
+            }
+            
+            /* Fix for the mobile logo positioning - align with hero text */
+            .mobile-header .logo-container {
+                position: relative;
+                margin-right: 1rem;
+                margin-left: 0;
+                padding: 0;
+                display: flex;
+                align-items: center; /* This centers the logo vertically */
+            }
+            
+            .mobile-header {
+                display: flex;
+                align-items: center; /* This ensures all elements are vertically centered */
+            }
+            
+            .mobile-header .hero-text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center; /* Center the text vertically */
+            }
+            
+            .mobile-header .hero-title {
+                margin-top: 0;
+                margin-bottom: 0; /* Remove default margins */
+            }
+            
+            /* Adjust logo size to match text height better */
+            .mobile-header .logo {
+                max-height: 42px;
+            }
+        }
+
+        /* For very small mobile screens */
+        @media (max-width: 360px) {
+            .mobile-header {
+                padding: 0.8rem;
+                margin: 0.8rem 0.8rem 1.2rem;
+            }
+            
+            .mobile-header .logo {
+                max-height: 40px;
+            }
+            
+            .mobile-header .hero-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container">
+        <video autoplay muted loop class="video-background">
+            <source src="https://res.cloudinary.com/ds9zfzje1/video/upload/v1751982276/perfecto_wqexxv.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="video-overlay"></div>
+        
+        <!-- Logo Section -->
+        <!-- <div class="logo-container">
+            <img src="https://via.placeholder.com/150x50/FFFFFF/097B3F?text=RoBen+Adventures" alt="RoBen Adventures" class="logo">
+        </div> -->
+        
+        <!-- Desktop logo -->
+        <div class="logo-container card-effect desktop-logo">
+            <img src="https://res.cloudinary.com/ds9zfzje1/image/upload/v1751983716/RoBen_logo_rje0an.jpg" alt="RoBen Adventures Logo" class="logo">
+        </div>
+        
+        <!-- Mobile header with logo and title side by side -->
+        <div class="mobile-header">
+            <div class="logo-container">
+                <img src="https://res.cloudinary.com/ds9zfzje1/image/upload/v1751983716/RoBen_logo_rje0an.jpg" alt="RoBen Adventures Logo" class="logo">
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title glowing-title">EXPLORE KIGEZI</h1>
+            </div>
+        </div>
+        
+        <!-- Desktop hero text -->
+        <div class="hero-text desktop-hero-text">
+            <h1 class="hero-title glowing-title">EXPLORE KIGEZI</h1>
+            <p class="hero-subtitle">Experience an unforgettable 2-day adventure across the beautiful landscapes of Kigezi region</p>
+        </div>
+        
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Left Column - Info Cards and Date/Price Section -->
+            <div class="left-column">
+                <!-- Info Cards -->
+                <div class="info-cards">
+                    
+                    <div class="info-card card-effect">
+                        <div class="card-icon"><i class="bi bi-geo-alt"></i></div>
+                        <div class="card-title">Places to Visit</div>
+                        <ul class="places-list">
+                            <li class="place-item">
+                                <i class="bi bi-check-circle-fill place-check"></i>
+                                <span class="place-name">Kisiizi Falls in Rukungiri</span>
+                            </li>
+                            <li class="place-item">
+                                <i class="bi bi-check-circle-fill place-check"></i>
+                                <span class="place-name">Lake Bunyonyi</span>
+                            </li>
+                            <li class="place-item">
+                                <i class="bi bi-check-circle-fill place-check"></i>
+                                <span class="place-name">Uganda Rwanda Border</span>
+                            </li>
+                            <li class="place-item">
+                                <i class="bi bi-check-circle-fill place-check"></i>
+                                <span class="place-name">Satellite Hotel, Rwahi</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                
+                <!-- Date Card -->
+                <div class="date-container card-effect">
+                    <div class="card-icon"><i class="bi bi-calendar"></i></div>
+                    <div class="date-text">DATE</div>
+                    <div class="date-value glow-effect">6TH - 7TH SEPTEMBER, 2025</div>
+                    <div class="date-text">2 DAYS & 1 NIGHT</div>
+                </div>
+                
+                <!-- Price Card -->
+                <div class="price-highlight card-effect">
+                    <div class="price-value glow-effect">UGX 100K</div>
+                    <div class="price-note">FEE COVERS: Transport, Activities, Accommodation, Supper, Campfire</div>
+                    <div class="free-tshirt"><i class="bi bi-gift"></i> FREE T-SHIRT</div>
+                </div>
+            </div>
+
+            <!-- Right Column - Activities Panel with compact layout -->
+            <div class="right-column">
+                <div class="activities-panel card-effect">
+                    <div class="activities-header">
+                        <h2 class="activities-title glow-effect">ACTIVITIES</h2>
+                        <p class="activities-subtitle">Your adventure includes:</p>
+                    </div>
+                    
+                    <ul class="activity-list">
+                        <li class="activity-item card-effect">
+                            <i class="bi bi-water"></i>
+                            Hiking to the falls
+                        </li>
+                        <li class="activity-item card-effect">
+                            <i class="bi bi-truck"></i>
+                            Road trip vibes
+                        </li>
+                        <li class="activity-item card-effect">
+                            <i class="bi bi-fire"></i>
+                            Campfire vibes
+                        </li>
+                        <li class="activity-item card-effect">
+                            <i class="bi bi-life-preserver"></i>
+                            Boat cruise
+                        </li>
+                        <li class="activity-item card-effect">
+                            <i class="bi bi-moon-stars"></i>
+                            Kabale Night Life
+                        </li>
+                        <li class="activity-item card-effect">
+                            <i class="bi bi-lightning"></i>
+                            Zip lining
+                        </li>
+                        <li class="activity-item card-effect">
+                            <i class="bi bi-droplet"></i>
+                            Swimming
+                        </li>
+                        <li class="activity-item card-effect">
+                            <i class="bi bi-camera"></i>
+                            Photo moments
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Moved badges and CTA button below activities panel -->
+                <div class="badge-container">
+                    <!-- Pickup Station Badge -->
+                    <div class="pickup-badge card-effect">
+                        <i class="bi bi-geo-alt-fill"></i> PICKUP STATION: PETRO CITY
+                    </div>
+                    
+                    <button class="cta-button" onclick="window.open('tel:+256779492785')">
+                        <i class="bi bi-calendar-check"></i> RESERVE YOUR SPOT NOW
+                    </button>
+                    
+                    <!-- Contact Section moved below the CTA button -->
+                    <div class="contact-section">
+                        <div class="contact-card card-effect" onclick="window.open('tel:+256779492785')">
+                            <i class="bi bi-telephone-fill contact-icon"></i>
+                            <h4>Reserve Now</h4>
+                            <div style="font-size: 1rem; font-weight: 600; color: var(--primary-gold);">
+                                +256 779 492 785
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card card-effect" onclick="window.open('https://wa.me/256776095815')">
+                            <i class="bi bi-whatsapp contact-icon"></i>
+                            <h4>WhatsApp</h4>
+                            <div style="font-size: 1rem; font-weight: 600; color: var(--primary-gold);">
+                                +256 776 095 815
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sponsors Section -->
+        <div class="sponsors-section">
+            <div class="sponsors-title text-shadow">SPONSORED BY</div>
+            <div class="sponsors-logos">
+                <img src="https://res.cloudinary.com/ds9zfzje1/image/upload/v1751996486/kaganga_aeci8j.jpg" alt="KAGANGA" class="sponsor-logo">
+                <img src="https://res.cloudinary.com/ds9zfzje1/image/upload/v1751996486/revolve_tnm5ym.jpg" alt="Evolve" class="sponsor-logo">
+                <img src="https://res.cloudinary.com/ds9zfzje1/image/upload/v1751996702/tourismboard_vye1rw.png" alt="Uganda Tourism Board" class="sponsor-logo">
+                <img src="https://res.cloudinary.com/ds9zfzje1/image/upload/v1751996702/exploreug_liuvcd.png" alt="Explore Uganda" class="sponsor-logo">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enhanced interactions with better animation timing and effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function for responsive layout handling
+            const handleResponsiveLayout = () => {
+                const isMobile = window.innerWidth <= 768;
+                const videoOverlay = document.querySelector('.video-overlay');
+                
+                // Adjust overlay opacity based on device
+                if (isMobile) {
+                    videoOverlay.style.background = 'linear-gradient(rgba(9, 123, 63, 0.6), rgba(5, 94, 64, 0.7))';
+                } else {
+                    const currentHour = new Date().getHours();
+                    const opacity = (currentHour > 7 && currentHour < 18) ? 0.55 : 0.65;
+                    videoOverlay.style.background = `linear-gradient(rgba(9, 123, 63, ${opacity}), rgba(5, 94, 64, ${opacity + 0.1}))`;
+                }
+                
+                // Ensure sponsors are visible at the bottom on mobile
+                const sponsors = document.querySelector('.sponsors-section');
+                if (isMobile) {
+                    sponsors.style.position = 'relative';
+                } else {
+                    sponsors.style.position = 'absolute';
+                }
+                
+                // Set proper page height for mobile
+                document.body.style.height = isMobile ? 'auto' : '100vh';
+            };
+            
+            // Run on page load and resize
+            handleResponsiveLayout();
+            window.addEventListener('resize', handleResponsiveLayout);
+            
+            // Make video more visible by adjusting overlay opacity based on time of day
+            const videoOverlay = document.querySelector('.video-overlay');
+            const currentHour = new Date().getHours();
+            // Less opacity during day, more during night for readability
+            const opacity = (currentHour > 7 && currentHour < 18) ? 0.55 : 0.65;
+            videoOverlay.style.background = `linear-gradient(rgba(9, 123, 63, ${opacity}), rgba(5, 94, 64, ${opacity + 0.1}))`;
+            
+            // Animate cards on page load with staggered timing
+            const cards = document.querySelectorAll('.card-effect, .hero-title, .sub-title, .hero_subtitle');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 + (index * 100));
+            });
+
+            // 3D tilt effect for cards
+            const tiltCards = document.querySelectorAll('.card-effect');
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const angleY = (x - centerX) / 30;
+                    const angleX = (centerY - y) / 30;
+                    
+                    this.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(10px)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                });
+            });
+
+            // Add floating animation to hero title
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                heroTitle.classList.add('floating-element');
+            }
+
+            // Enhance hover effects on activity items
+            const activityItems = document.querySelectorAll('.activity-item');
+            activityItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.2) rotate(5deg)';
+                        icon.style.transition = 'transform 0.3s ease';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0)';
+                    }
+                });
+            });
+
+            // Logo 3D effect
+            const logo = document.querySelector('.logo-container');
+            if (logo) {
+                logo.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateZ(30px) scale(1.05)';
+                    this.style.filter = 'drop-shadow(0 8px 15px rgba(0, 0, 0, 0.4))';
+                });
+                
+                logo.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateZ(20px) scale(1)';
+                    this.style.filter = 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3))';
+                });
+            }
+
+            // Breathing effect for CTA button
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                setInterval(() => {
+                    ctaButton.classList.add('breathing');
+                    setTimeout(() => {
+                        ctaButton.classList.remove('breathing');
+                    }, 1500);
+                }, 3000);
+            }
+
+            // Function to adjust activities panel height
+            const adjustActivitiesPanel = () => {
+                const activitiesPanel = document.querySelector('.activities-panel');
+                const activityList = document.querySelector('.activity-list');
+                
+                if (activitiesPanel && activityList) {
+                    // Reset any inline height first
+                    activitiesPanel.style.height = 'auto';
+                    
+                    // Set height based on content after a short delay to ensure rendering is complete
+                    setTimeout(() => {
+                        const titleHeight = document.querySelector('.activities-title').offsetHeight;
+                        const listHeight = activityList.offsetHeight;
+                        const padding = 24; // Account for padding
+                        
+                        activitiesPanel.style.height = `${titleHeight + listHeight + padding * 2}px`;
+                    }, 100);
+                }
+            };
+            
+            // Run on page load and resize
+            adjustActivitiesPanel();
+            window.addEventListener('resize', adjustActivitiesPanel);
+            
+            // Additional responsive adjustments
+            const handleBadgeResponsiveLayout = () => {
+                const isMobile = window.innerWidth <= 992;
+                const badgeContainer = document.querySelector('.badge-container');
+                const rightColumn = document.querySelector('.right-column');
+                
+                if (isMobile) {
+                    // On mobile, ensure badges have proper spacing
+                    badgeContainer.style.marginTop = '1rem';
+                } else {
+                    // On desktop, adjust spacing between activities panel and badges
+                    badgeContainer.style.marginTop = '1.5rem';
+                }
+            };
+            
+            handleBadgeResponsiveLayout();
+            window.addEventListener('resize', handleBadgeResponsiveLayout);
+        });
+
+        // Add keyframe animations for various effects
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-8px); }
+                }
+                
+                .floating-element {
+                    animation: float 4s ease-in-out infinite;
+                }
+                
+                @keyframes breathing {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); }
+                }
+                
+                .breathing {
+                    animation: breathing 1.5s ease-in-out;
+                }
+                
+                @keyframes shimmer {
+                    0% { background-position: -100% 0; }
+                    100% { background-position: 100% 0; }
+                }
+                
+                .glow-effect {
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                .glow-effect::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                    background-size: 200% 100%;
+                    animation: shimmer 3s infinite;
+                    pointer-events: none;
+                }
+            </style>
+        `);
+
+        // Fix for iOS video playback issues
+        const video = document.querySelector('.video-background');
+        if (video) {
+            video.setAttribute('playsinline', '');
+            video.setAttribute('muted', '');
+            video.setAttribute('loop', '');
+            
+            // Ensure video plays on iOS
+            video.play().catch(function(error) {
+                console.log('Video play failed:', error);
+                
+                // Try playing on user interaction as fallback
+                document.addEventListener('touchstart', function() {
+                    video.play().catch(function(e) {
+                        console.log('Still cannot play video', e);
+                    });
+                }, {once: true});
+            });
+        }
+
+        // Replace this function in your JavaScript
+        const enhanceSquareCards = () => {
+            // Keep only the place item hover effects
+            const placeItems = document.querySelectorAll('.place-item');
+            placeItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    const icon = item.querySelector('.place-check');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.2)';
+                        icon.style.color = '#FFB74D';
+                        icon.style.transition = 'all 0.2s ease';
+                    }
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    const icon = item.querySelector('.place-check');
+                    if (icon) {
+                        icon.style.transform = 'scale(1)';
+                        icon.style.color = 'var(--primary-gold)';
+                    }
+                });
+            });
+        };
+        
+        // Run the function after DOM is loaded
+        document.addEventListener('DOMContentLoaded', enhanceSquareCards);
+
+        // Add to existing JavaScript - Enhanced contact card functionality
+        const enhanceContactCards = () => {
+            // Phone call card
+            const phoneCard = document.querySelector('.contact-card:first-child');
+            if (phoneCard) {
+                phoneCard.style.cursor = 'pointer';
+                phoneCard.addEventListener('click', function() {
+                    window.open('tel:+256779492785');
+                });
+            }
+            
+            // WhatsApp card
+            const whatsappCard = document.querySelector('.contact-card:nth-child(2)');
+            if (whatsappCard) {
+                whatsappCard.style.cursor = 'pointer';
+                whatsappCard.addEventListener('click', function() {
+                    // Format: https://wa.me/whatsappnumber (without + sign)
+                    window.open('https://wa.me/256776095815');
+                });
+            }
+        };
+
+        // Run this function
+        document.addEventListener('DOMContentLoaded', enhanceContactCards);
+    </script>
+</body>
+</html>
